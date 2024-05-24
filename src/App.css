@@ -1,0 +1,58 @@
+table, th, td {
+    border: 1px solid rgb(224, 96, 96);
+    border-collapse: collapse;
+  }
+
+  table{
+    width: 1500px;
+    margin-left: 50px;
+  }
+
+  .main{
+    display: flex;
+    justify-content: center;
+  }
+  .sub{
+    border: 1px solid red;
+    width: 500px;
+    height: 700px;
+  }
+
+  .sub h1{
+    text-align: center;
+  }
+
+  .counter{
+    border: 1px solid white;
+    width: 300px;
+    border-radius: 30%;
+    padding: 20px;
+    margin: 10px 0px 10px 0px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .counterParent{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  button{
+    background-color: rgb(175, 153, 153);
+  }
+  .reset{
+    padding: 5px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .sum{
+    width: 200px;
+    border: 1px solid white;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 20px;
+    padding: 10px;
+  }
