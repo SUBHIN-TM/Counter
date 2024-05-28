@@ -5,16 +5,17 @@ import { decrement, increment ,reset} from '../../features/counter/counterSlice'
 
 const Task2=()=>{
     
-    const count = useSelector((state) => state.counter.value)
+    const countersArray = useSelector((state) => state.counters.countersArray)
+    console.log(countersArray);
     const [sum,setSum]=useState(0)
     const dispatch = useDispatch()
       
-    const incrementFunction=()=>{
-        dispatch(increment())
+    const incrementFunction=(id)=>{
+        dispatch(increment(id))
     }
 
-     const decrementFunction=()=>{
-        dispatch(decrement())
+     const decrementFunction=(id)=>{
+        dispatch(decrement(id))
      }
 
      const resetFunction=()=>{
@@ -27,10 +28,11 @@ const Task2=()=>{
     <div className="sub">
       <h1 >Counter</h1>
       <div className="counterParent">
-      <Counter number={1} inc={incrementFunction} dec={decrementFunction} value={count}  />
-      <Counter  number={2} inc={incrementFunction} dec={decrementFunction} value={count} />
-      <Counter  number={3} inc={incrementFunction} dec={decrementFunction} value={count} />
-      <Counter  number={4} inc={incrementFunction} dec={decrementFunction} value={count}  />
+        {countersArray.map((counter)=>(
+           <Counter key={counter.id} number={counter.id} inc={()=>incrementFunction(counter.id)} dec={()=>decrementFunction(counter.id)} value={counter.value}  />
+        ))}
+    
+    
       </div>
       <button onClick={()=>resetFunction()} className="reset">RESET</button>
       <div style={{display:'flex',justifyContent:'center'}}>

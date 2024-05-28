@@ -1,22 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: 0,
-}
+  countersArray:[ 
+    {id:1,value:0},
+    {id:2,value:0},
+    {id:3,value:0},
+    {id:4,value:0},
+  ]
+};
 
 export const counterSlice = createSlice({
-  name: 'counter',
+  name: 'COUNTERS',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    increment: (state,action) => {
+      const counter=state.countersArray.find((counter)=>counter.id==action.payload)
+      counter.value +=1
     },
-    decrement: (state) => {
-      state.value -= 1
+    decrement: (state,action) => {
+      const counter=state.countersArray.find((counter)=>counter.id==action.payload)
+      counter.value -= 1
     },
 
     reset:(state)=>{
-        state.value =0
+       state.countersArray=state.countersArray.map((c)=>({
+        ...c,
+        value:0
+       }))
     }
   },
 })
