@@ -14,7 +14,7 @@ const caluculateTotalSum=(array)=>{
   return array.reduce((acc,counter)=>acc+counter.value,0)
 }
 
-export const counterSlice = createSlice({
+ const counterSlice = createSlice({
   name: 'COUNTERS',
   initialState,
   reducers: {
@@ -44,14 +44,25 @@ export const counterSlice = createSlice({
     reset:(state)=>{
        state.countersArray=state.countersArray.map((c)=>({
         ...c,
-        value:0
+        value:0,
+        error:null
        }))
+     
        state.sum=caluculateTotalSum(state.countersArray)
     },
+    deleteCounter:(state,action)=>{
+      state.countersArray = state.countersArray.filter((counter) => {
+        return counter.id !== action.payload
+      });
+      state.sum = caluculateTotalSum(state.countersArray);
+    },
+    addNew:(state)=>{
+      state.countersArray.push({id:state.countersArray.length+1,value:0,error:null})
+    }
   },
 })
 
 
-export const { increment, decrement,reset,calculateSum } = counterSlice.actions
+export const { increment, decrement,reset,calculateSum,deleteCounter,addNew } = counterSlice.actions
 
 export default counterSlice.reducer

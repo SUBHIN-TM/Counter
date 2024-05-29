@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Counter from "./Counter";
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment ,reset} from '../../features/counter/counterSlice'
+import { decrement, increment ,reset,deleteCounter,addNew} from '../../features/counter/counterSlice'
 
 const Task2=()=>{
     
@@ -22,20 +22,31 @@ const Task2=()=>{
      const resetFunction=()=>{
         dispatch(reset())
      }
+
+     const deleteFUNC=(id)=>{
+      dispatch(deleteCounter(id))
+   }
+
+   const addNewCounter=()=>{
+    dispatch(addNew())
+   }
+
  
     return(
-<>
+<>id
 <div className="main">
     <div className="sub">
       <h1 >Counter</h1>
       <div className="counterParent">
         {countersArray.map((counter)=>(
-           <Counter key={counter.id} number={counter.id} inc={()=>incrementFunction(counter.id)} dec={()=>decrementFunction(counter.id)} value={counter.value} error={counter.error}  />
+           <Counter key={counter.id} number={counter.id} inc={()=>incrementFunction(counter.id)} dec={()=>decrementFunction(counter.id)} value={counter.value} error={counter.error} deleteCounter={()=>deleteFUNC(counter.id)} />
         ))}
     
     
       </div>
       <button onClick={()=>resetFunction()} className="reset">RESET</button>
+      <button onClick={()=>addNewCounter()}  className="reset">Add New Counter</button>
+
       <div style={{display:'flex',justifyContent:'center'}}>
       <div className="sum">
         <span>SUM</span>
