@@ -6,8 +6,9 @@ import { decrement, increment ,reset} from '../../features/counter/counterSlice'
 const Task2=()=>{
     
     const countersArray = useSelector((state) => state.counters.countersArray)
-    console.log(countersArray);
-    const [sum,setSum]=useState(0)
+    const sum=useSelector((state)=>state.counters.sum)
+    // console.log(countersArray);
+    console.log("sum is",sum);
     const dispatch = useDispatch()
       
     const incrementFunction=(id)=>{
@@ -21,7 +22,7 @@ const Task2=()=>{
      const resetFunction=()=>{
         dispatch(reset())
      }
-
+ 
     return(
 <>
 <div className="main">
@@ -29,7 +30,7 @@ const Task2=()=>{
       <h1 >Counter</h1>
       <div className="counterParent">
         {countersArray.map((counter)=>(
-           <Counter key={counter.id} number={counter.id} inc={()=>incrementFunction(counter.id)} dec={()=>decrementFunction(counter.id)} value={counter.value}  />
+           <Counter key={counter.id} number={counter.id} inc={()=>incrementFunction(counter.id)} dec={()=>decrementFunction(counter.id)} value={counter.value} error={counter.error}  />
         ))}
     
     

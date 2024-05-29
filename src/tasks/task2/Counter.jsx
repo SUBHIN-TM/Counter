@@ -1,6 +1,6 @@
-import { useState } from "react";
 
-const Counter=({number,inc,dec,value,})=>{
+
+const Counter=({number,inc,dec,value,error})=>{
     return(
         <>
          <div className="counter"> 
@@ -8,7 +8,8 @@ const Counter=({number,inc,dec,value,})=>{
         <span> <button onClick={()=>dec()}> ➖</button>  {value}    <button onClick={()=> inc()}> ➕ </button></span>
          
         </div>
-        <small>Error Message</small>
+        {error &&(<small>{error}</small>)}
+        
         </>
        
         
